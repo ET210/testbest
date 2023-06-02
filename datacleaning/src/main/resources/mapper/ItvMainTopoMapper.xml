@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyy.mapper.ItvMainTopoMapper">
+
+    <resultMap id="BaseResultMap" type="com.cyy.domain.ItvMainTopo">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="user_id" column="user_id" jdbcType="VARCHAR"/>
+        <result property="mac" column="mac" jdbcType="VARCHAR"/>
+        <result property="device_sn" column="device_sn" jdbcType="VARCHAR"/>
+        <result property="city_name" column="city_name" jdbcType="VARCHAR"/>
+        <result property="area_name" column="area_name" jdbcType="VARCHAR"/>
+        <result property="bras" column="bras" jdbcType="VARCHAR"/>
+        <result property="bras_ip" column="bras_ip" jdbcType="VARCHAR"/>
+        <result property="olt" column="olt" jdbcType="VARCHAR"/>
+        <result property="olt_ip" column="olt_ip" jdbcType="VARCHAR"/>
+        <result property="pon" column="pon" jdbcType="VARCHAR"/>
+        <result property="obd_id" column="obd_id" jdbcType="VARCHAR"/>
+        <result property="loid" column="loid" jdbcType="VARCHAR"/>
+        <result property="platform" column="platform" jdbcType="VARCHAR"/>
+        <result property="manufacturer" column="manufacturer" jdbcType="VARCHAR"/>
+        <result property="manufacturer_model" column="manufacturer_model" jdbcType="VARCHAR"/>
+        <result property="manufacturer_version" column="manufacturer_version" jdbcType="VARCHAR"/>
+        <result property="light_cat_manufacturer" column="light_cat_manufacturer" jdbcType="VARCHAR"/>
+        <result property="light_cat_model" column="light_cat_model" jdbcType="VARCHAR"/>
+        <result property="light_cat_version" column="light_cat_version" jdbcType="VARCHAR"/>
+        <result property="user_star_rating" column="user_star_rating" jdbcType="VARCHAR"/>
+        <result property="light_grouping" column="light_grouping" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,user_id,mac,
+        device_sn,city_name,area_name,
+        bras,bras_ip,olt,
+        olt_ip,pon,obd_id,
+        loid,platform,manufacturer,
+        manufacturer_model,manufacturer_version,light_cat_manufacturer,
+        light_cat_model,light_cat_version,user_star_rating,
+        light_grouping
+    </sql>
+
+    <select id="queryPersion" resultType="com.cyy.domain.ItvMainTopo">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM `itv_main_topo`
+        where id > #{lastId}
+        ORDER BY ID LIMIT #{batchSize}
+    </select>
+
+
+    <select id="getCount" resultType="integer">
+        select count(1)
+        from itv_main_topo
+    </select>
+
+    <select id="fetchData" resultType="com.cyy.domain.ItvMainTopo">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM itv_main_topo WHERE id between #{lastId} and #{batchSize}
+    </select>
+
+
+
+    <select id="queryAll" resultType="com.cyy.domain.ItvMainTopo">
+        SELECT <include refid="Base_Column_List"></include> from itv_main_topo where id
+    </select>
+</mapper>

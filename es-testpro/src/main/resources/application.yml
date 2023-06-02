@@ -1,0 +1,6 @@
+server:
+  port: 8009
+
+elasticsearch:
+ host: 192.168.11.130
+ port: 9200

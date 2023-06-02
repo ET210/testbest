@@ -1,0 +1,12 @@
+server:
+  port: 8200
+
+spring:
+  application:
+    ## 注册服务名
+    name: admin-server
+
+management:
+  endpoint:
+    health:
+      show-details: always
