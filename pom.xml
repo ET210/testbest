@@ -20,6 +20,7 @@
       <module>Springboot-JWT</module>
       <module>Interface_Dempotency</module>
       <module>completableFuture</module>
+      <module>Stream</module>
   </modules>
   <packaging>pom</packaging>
 

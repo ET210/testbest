@@ -2,6 +2,7 @@ package com.cyy.controller;
 import com.cyy.domain.User;
 import com.cyy.esconfig.EsConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.index.IndexRequest;
@@ -29,12 +30,33 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/es")
+@RequiredArgsConstructor
 public class EsController {
-    @Resource
-    private EsConfig esConfig;
+
+    private final EsConfig esConfig;
 
     @PutMapping("/createIndex")
     public void createIndex() throws IOException {
+        CreateIndexRequest request = new CreateIndexRequest(esConfig.getIndex());
+        CreateIndexResponse response = esConfig.getClient().indices().create(request, RequestOptions.DEFAULT);
+        System.out.println(response.isAcknowledged());
+    }
+
+    @GetMapping("/getIndex")
+    public void getIndex() throws IOException {
+        GetIndexRequest request = new GetIndexRequest(esConfig.getIndex());
+        boolean exists = esConfig.getClient().indices().exists(request, RequestOptions.DEFAULT);
+
+        CreateIndexRequest request = new CreateIndexRequest(esConfig.getIndexName());
+        CreateIndexResponse response = esConfig.getClient().indices().create(request, RequestOptions.DEFAULT);
+        System.out.println(response);
+    }
+
+    @GetMapping("/getIndex")
+    public void getIndex() throws IOException {
+        GetIndexRequest request = new GetIndexRequest(esConfig.getIndexName());
+        boolean exists = esConfig.getClient().indices().exists(request, RequestOptions.DEFAULT);
+        System
         CreateIndexRequest request = new CreateIndexRequest("information");
         CreateIndexResponse createIndexResponse = esConfig
                 .restHighLevelClient()
@@ -59,6 +81,8 @@ public class EsController {
         esConfig.restHighLevelClient().close();
 
     }
+
+
 
     @PostMapping("/docInsert")
     public void insertDocument() throws IOException {
