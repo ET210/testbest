@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 /**
  * @author:CYY
@@ -17,12 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
     @GetMapping("/test")
     public void get() {
-        index();
-        System.out.println("=============");
-        hello();
-        for (int i = 0; i < 10; i++) {
-            System.out.println(i+"hsdfs");
-        }
+        Executors.newSingleThreadExecutor();
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        CompletableFuture.supplyAsync(() -> {
+            for (int i = 0; i < 10; i++) {
+                System.out.println(Thread.currentThread().getId() + "正在执行任务");
+            }
+            return null;
+        }, executorService);
+        CompletableFuture.supplyAsync(() -> {
+            System.out.println(Thread.currentThread().getId() + "正在执行任务000000");
+            return null;
+        }, executorService);
+
     }
 
     public static void index() {
