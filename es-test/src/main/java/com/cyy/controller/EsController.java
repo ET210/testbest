@@ -56,7 +56,6 @@ public class EsController {
     public void getIndex() throws IOException {
         GetIndexRequest request = new GetIndexRequest(esConfig.getIndexName());
         boolean exists = esConfig.getClient().indices().exists(request, RequestOptions.DEFAULT);
-        System
         CreateIndexRequest request = new CreateIndexRequest("information");
         CreateIndexResponse createIndexResponse = esConfig
                 .restHighLevelClient()
@@ -69,7 +68,7 @@ public class EsController {
     }
 
     @GetMapping("getIndex")
-    public void getIndex() throws IOException {
+    public void getIndex1() throws IOException {
         // 查询索引
         GetIndexRequest request = new GetIndexRequest("information");
         GetIndexResponse getIndexResponse = esConfig.restHighLevelClient().indices().get(request, RequestOptions.DEFAULT);

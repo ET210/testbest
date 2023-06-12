@@ -21,6 +21,7 @@
       <module>Interface_Dempotency</module>
       <module>completableFuture</module>
       <module>Stream</module>
+      <module>observer</module>
   </modules>
   <packaging>pom</packaging>
 
