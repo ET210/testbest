@@ -22,6 +22,7 @@
       <module>completableFuture</module>
       <module>Stream</module>
       <module>observer</module>
+      <module>IPparser</module>
   </modules>
   <packaging>pom</packaging>
 
