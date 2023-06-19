@@ -23,6 +23,7 @@
       <module>Stream</module>
       <module>observer</module>
       <module>IPparser</module>
+      <module>ThreadLocal</module>
   </modules>
   <packaging>pom</packaging>
 
