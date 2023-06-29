@@ -25,6 +25,7 @@
       <module>IPparser</module>
       <module>ThreadLocal</module>
       <module>enum</module>
+      <module>mapstruct</module>
   </modules>
   <packaging>pom</packaging>
 

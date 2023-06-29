@@ -3,8 +3,6 @@ import com.cyy.domain.User;
 import com.cyy.esconfig.EsConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
-import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -35,7 +33,7 @@ public class EsController {
 
     private final EsConfig esConfig;
 
-    @PutMapping("/createIndex")
+   /* @PutMapping("/createIndex")
     public void createIndex() throws IOException {
         CreateIndexRequest request = new CreateIndexRequest(esConfig.getIndex());
         CreateIndexResponse response = esConfig.getClient().indices().create(request, RequestOptions.DEFAULT);
@@ -65,7 +63,7 @@ public class EsController {
         boolean acknowledged = createIndexResponse.isAcknowledged();
         System.out.println("索引操作 ：" + acknowledged);
         esConfig.restHighLevelClient().close();
-    }
+    }*/
 
     @GetMapping("getIndex")
     public void getIndex1() throws IOException {

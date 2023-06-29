@@ -19,7 +19,6 @@ public class TestThreadLocal {
             local.remove();
         }
 
-
     }
 
 }
