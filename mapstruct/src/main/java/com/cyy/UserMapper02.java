@@ -15,7 +15,7 @@ import java.util.List;
 @Mapper
 public interface  UserMapper02 {
     //单个属性
-    //@Mapping(source = "pwd",target = "password")
+    //@Mapping(source = "com.cyy.User",target = "com.cyy.UserDto")
     //多个属性
 
 
@@ -28,8 +28,7 @@ public interface  UserMapper02 {
             @Mapping(source = "id", target = "id"),
             @Mapping(source = "number", target = "number"),
             @Mapping(source = "address", target = "address"),
-            @Mapping(target = "birth", dateFormat = "yyyy-MM-dd HH:mm:ss"),
             @Mapping(source = "isDisable", target = "isDisable")
     })
-    List<UserDto> userToUserDto(List<User> user);
+    UserDto userToUserDto(User user);
 }

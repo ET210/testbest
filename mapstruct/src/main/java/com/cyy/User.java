@@ -13,6 +13,5 @@ public class User {
     private String id;
     private String number;
     private String address;
-    private String birth;
     private String isDisable;
 }

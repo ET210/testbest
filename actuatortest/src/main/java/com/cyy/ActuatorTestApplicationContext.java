@@ -3,10 +3,12 @@ package com.cyy;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 /**
- * @author:CYY
- * @create: 2023-05-24 13:49:11
- * @Description:
+ * 致动器测试应用程序上下文
+ *
+ * @author CYY
+ * @date 2023/07/26
  */
 @SpringBootApplication
 public class ActuatorTestApplicationContext {

@@ -26,6 +26,7 @@
       <module>ThreadLocal</module>
       <module>enum</module>
       <module>mapstruct</module>
+      <module>kafka</module>
   </modules>
   <packaging>pom</packaging>
 

@@ -1,5 +1,10 @@
 package com.cyy;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.cyy01.AreaDataVo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mapstruct.Mapper;
@@ -8,6 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,31 +52,75 @@ public class TestMapstruct {
 
     @Test
     public void testMapstruct2() {
-   /*     User user = new User();
+        User user = new User();
         user.setId("1");
         user.setNumber("1");
         user.setAddress("安徽");
-        user.setBirth("202001011500");
         user.setIsDisable("true");
-        User user1 = new User();
-        user1.setId("1");
-        user1.setNumber("1");
-        user1.setAddress("安徽");
-        user1.setBirth("202001011500");
-        user1.setIsDisable("true");
-        ArrayList<User> users = new ArrayList<>();
-        users.add(user);
-        users.add(user1);
         UserMapper02 mapper = Mappers.getMapper(UserMapper02.class);
-        List<UserDto> userDtos = mapper.userToUserDto(users);
         System.out.println("===================");
-        for (int i = 0; i < userDtos.size(); i++) {
-            System.out.println(userDtos.get(i));
-        }*/
+        UserDto userDto = mapper.userToUserDto(user);
+        System.out.println(userDto);
         System.out.println("===================");
-        String s="202001011500";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    }
+
+    @Test
+    public void testMapstruct3() throws JsonProcessingException {
+        String json = "{\n" +
+                "\t\"id\": 123,\n" +
+                "\t\"name\": \"John\",\n" +
+                "\t\"number\": \"19.87\"\n" +
+                "}";
+        String json01 = "{\n" +
+                "\t\"AREANAME\": \"\",\n" +
+                "\t\"AREACODE\": \"320000\",\n" +
+                "\t\"RECORDDATE\": \"202001011500\",\n" +
+                "\t\"GOOD_PLAY_RATE\": \"98.67\",\n" +
+                "\t\"GOOD_LIVE_RATE\": \"98.78\",\n" +
+                "\t\"GOOD_SWTIME_RATE\": \"99.87\",\n" +
+                "\t\"LIVE_RATE\": \"98.45\",\n" +
+                "\t\"RE_RATE\": \"96.34\"\n" +
+                "},{\\n\" +\n" +
+                "                \"\\t\\\"AREANAME\\\": \\\"\\\",\\n\" +\n" +
+                "                \"\\t\\\"AREACODE\\\": \\\"320000\\\",\\n\" +\n" +
+                "                \"\\t\\\"RECORDDATE\\\": \\\"202001011500\\\",\\n\" +\n" +
+                "                \"\\t\\\"GOOD_PLAY_RATE\\\": \\\"98.67\\\",\\n\" +\n" +
+                "                \"\\t\\\"GOOD_LIVE_RATE\\\": \\\"98.78\\\",\\n\" +\n" +
+                "                \"\\t\\\"GOOD_SWTIME_RATE\\\": \\\"99.87\\\",\\n\" +\n" +
+                "                \"\\t\\\"LIVE_RATE\\\": \\\"98.45\\\",\\n\" +\n" +
+                "                \"\\t\\\"RE_RATE\\\": \\\"96.34\\\"\\n\" +\n" +
+                "                \"}";
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        AreaDataVo user = JSON.parseObject(json01, AreaDataVo.class);
+        System.out.println(user);
+        List<AreaDataVo> areaDataVos = JSONArray.parseArray(json01, AreaDataVo.class);
+        System.out.println(areaDataVos);
+
+        /*   System.out.println(areaDataVo.getRECORDDATE());*/
+
+        System.out.println(); // Output: 123
+//        System.out.println(user.getName()); // Output: John
+//        System.out.println(user.getNumber());
+    }
+
+    @Test
+    public void test02() throws Exception {
+                // 获取当前时间
+                LocalDateTime currentTime = LocalDateTime.now();
+                // 获取前一小时的时间
+                LocalDateTime previousHour = currentTime.minusHours(1);
+                // 定义日期时间格式
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHH");
+                // 格式化前一小时的时间
+                String formattedTime = previousHour.format(formatter);
+                // 输出结果
+                System.out.println("前一小时的时间：" + formattedTime);
+    }
+
+    @Test
+    public void test03() throws Exception {
     }
 
 }
